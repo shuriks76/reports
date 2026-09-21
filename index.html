@@ -140,10 +140,10 @@
             const studiesText = studiesValue !== '' ? studiesValue : '0';
 
             // 2. Build formatted report string
-            let reportMessage = `Отчёт:\n`;
-            reportMessage += `• Участие в служении: ${participatedText}\n`;
-            reportMessage += `• Количество часов: ${hoursText}\n`;
-            reportMessage += `• Количество изучений: ${studiesText}`;
+            let reportMessage = `📊 *ОТЧЁТ ЗА МЕСЯЦ*\n`;
+            reportMessage += `✅ *Участие в служении:* ${participatedText}\n`;
+            reportMessage += `⏱️ *Количество часов:* ${hoursText}\n`;
+            reportMessage += `📖 *Количество изучений:* ${studiesText}`;
 
             // 3. Construct WhatsApp URL
             const cleanPhone = RECIPIENT_PHONE.replace(/\D/g, '');
