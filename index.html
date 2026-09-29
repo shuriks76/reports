@@ -128,31 +128,33 @@
 
         function handleFormSubmit(event) {
             event.preventDefault();
-
+        
             // 1. Read input values
             const participatedChecked = document.getElementById('participated').checked;
             const hoursValue = document.getElementById('hours').value.trim();
             const studiesValue = document.getElementById('studies').value.trim();
-
-            // Format values (fallback to 0 if empty)
-            const participatedText = participatedChecked ? 'Да' : 'Нет';
-            const hoursText = hoursValue !== '' ? hoursValue : '0';
-            const studiesText = studiesValue !== '' ? studiesValue : '0';
-
+        
+            // Format values (если пусто или 0 — выводим прочерк)
+            const participatedText = participatedChecked ? 'Да ✅' : 'Нет ❌';
+            const hoursText = (hoursValue && hoursValue !== '0') ? hoursValue : '—';
+            const studiesText = (studiesValue && studiesValue !== '0') ? studiesValue : '—';
+        
             // 2. Build formatted report string
-            let reportMessage = `Отчёт:\n`;
-            reportMessage += `• Участие в служении: ${participatedText}\n`;
-            reportMessage += `• Количество часов: ${hoursText}\n`;
-            reportMessage += `• Количество изучений: ${studiesText}`;
-
+            const reportMessage = `📊 *ОТЧЁТ ЗА МЕСЯЦ*
+        ━━━━━━━━━━━━━━━
+        ✅ *Участие в служении:* ${participatedText}
+        ⏱️ *Количество часов:* ${hoursText}
+        📖 *Количество изучений:* ${studiesText}
+        ━━━━━━━━━━━━━━━`;
+        
             // 3. Construct WhatsApp URL
             const cleanPhone = RECIPIENT_PHONE.replace(/\D/g, '');
             const encodedText = encodeURIComponent(reportMessage);
             const waUrl = `https://wa.me/${cleanPhone}?text=${encodedText}`;
-
+        
             // 4. Open WhatsApp in new window/app
             window.open(waUrl, '_blank');
-
+        
             // 5. Show success notification
             document.getElementById('successModal').classList.remove('hidden');
         }
