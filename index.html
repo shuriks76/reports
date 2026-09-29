@@ -56,7 +56,7 @@
                     <span class="text-sm font-semibold text-slate-800 pr-3">
                         Я участвовал в служении
                     </span>
-                    <input type="checkbox" id="participated" checked
+                    <input type="checkbox" id="participated" 
                         class="w-6 h-6 text-emerald-500 rounded-lg border-slate-300 focus:ring-emerald-500 accent-emerald-500 cursor-pointer">
                 </label>
             </div>
@@ -134,17 +134,17 @@
             const hoursValue = document.getElementById('hours').value.trim();
             const studiesValue = document.getElementById('studies').value.trim();
         
-            // Format values (если пусто или 0 — выводим прочерк)
-            const participatedText = participatedChecked ? 'Да ✅' : 'Нет ❌';
+            // Format values (галочка / крестик и прочерки вместо нулей)
+            const participatedText = participatedChecked ? 'Да \u2705' : 'Нет \u274C';
             const hoursText = (hoursValue && hoursValue !== '0') ? hoursValue : '—';
             const studiesText = (studiesValue && studiesValue !== '0') ? studiesValue : '—';
         
-            // 2. Build formatted report string
-            const reportMessage = `📊 *ОТЧЁТ ЗА МЕСЯЦ*
+            // 2. Build formatted report string with safe unicode emojis
+            const reportMessage = `\uD83D\uDCD8 *ОТЧЁТ ЗА МЕСЯЦ*
         ━━━━━━━━━━━━━━━
-        ✅ *Участие в служении:* ${participatedText}
-        ⏱️ *Количество часов:* ${hoursText}
-        📖 *Количество изучений:* ${studiesText}
+        \u2705 *Участие в служении:* ${participatedText}
+        \u23F1\uFE0F *Количество часов:* ${hoursText}
+        \uD83D\uDCD6 *Количество изучений:* ${studiesText}
         ━━━━━━━━━━━━━━━`;
         
             // 3. Construct WhatsApp URL
